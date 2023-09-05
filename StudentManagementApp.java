@@ -10,7 +10,6 @@ public class StudentManagementApp {
         Scanner scanner = new Scanner(System.in);
         StudentManagementSystem system = new StudentManagementSystem();
 
-        // Load student data from file if it exists
         loadStudentData(system);
 
         while (true) {
@@ -23,47 +22,46 @@ public class StudentManagementApp {
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    // Input and add a new student
+                   
                     System.out.print("Enter name: ");
                     String name = scanner.nextLine();
                     System.out.print("Enter roll number: ");
                     int rollNumber = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
+                    scanner.nextLine(); 
                     System.out.print("Enter grade: ");
                     String grade = scanner.nextLine();
 
                     Student student = new Student(name, rollNumber, grade);
                     system.addStudent(student);
 
-                    // Save student data to file after adding a new student
                     saveStudentData(system);
                     break;
                 case 2:
-                    // Remove a student
+        
                     System.out.print("Enter roll number to remove: ");
                     int rollToRemove = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
+                    scanner.nextLine(); 
 
                     Student studentToRemove = system.searchStudent(rollToRemove);
                     if (studentToRemove != null) {
                         system.removeStudent(studentToRemove);
                         System.out.println("Student removed.");
 
-                        // Save student data to file after removing a student
+                        
                         saveStudentData(system);
                     } else {
                         System.out.println("Student not found.");
                     }
                     break;
                 case 3:
-                    // Search for a student
+                    
                     System.out.print("Enter roll number to search: ");
                     int rollToSearch = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
+                    scanner.nextLine(); 
 
                     Student foundStudent = system.searchStudent(rollToSearch);
                     if (foundStudent != null) {
@@ -73,11 +71,11 @@ public class StudentManagementApp {
                     }
                     break;
                 case 4:
-                    // Display all students
+                   
                     system.displayAllStudents();
                     break;
                 case 5:
-                    // Exit the program
+                    
                     System.out.println("Exiting the program.");
                     System.exit(0);
                     break;
@@ -101,7 +99,7 @@ public class StudentManagementApp {
                 }
             }
         } catch (FileNotFoundException e) {
-            // Handle if the file doesn't exist
+            
         }
     }
 
@@ -111,7 +109,7 @@ public class StudentManagementApp {
                 writer.println(student.getName() + "," + student.getRollNumber() + "," + student.getGrade());
             }
         } catch (FileNotFoundException e) {
-            // Handle any errors while writing data
+            
             System.err.println("Error saving student data: " + e.getMessage());
         }
     }
